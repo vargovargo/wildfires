@@ -36,8 +36,6 @@ flist <- list.files(path = "data/", pattern = "^.*\\.(nc|NC|Nc|Nc)$")
 #   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC52/rcp85/MIROC52_85_AA.all.bau.mu.nc"
 # )
 
-files=flist
-
 
 dname = "hectares"
 
@@ -51,7 +49,6 @@ process_nc <- function(files){
       # open a conneciton to the ith nc file
       ncin <- nc_open(paste0("data/", files[i]))
       
-      i=1
       # store values from variables and atributes
       attributes(ncin$dim)$names
       nc_lat <- ncvar_get(ncin, "lat")
@@ -144,6 +141,10 @@ CAonly <- inner_join(all_fire, locationData) %>% na.omit() %>%
                                     levels = c("Low Projection", "Central Projection","High Projection")))
          
                  
+
+CAonly %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth) %>% 
+  summarise(mean_hectares = mean(hectares, na.rm=T)) %>% write.csv("./data/hectaresByClimateRegion.csv", row.names=F)
+
                   
 CAonly %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth, lon, lat) %>% 
   summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
@@ -151,8 +152,19 @@ CAonly %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth, 
   ggplot(aes(x=lon, y=lat, color=mean_hectares)) + geom_point() + facet_grid(climateModel + RCP ~ period)
 
 
-CAonly %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth, ClimateRegion) %>% 
+CAonly %>% group_by(climateModel, period, RCP, PopulationGrowth, ClimateRegion) %>% 
   summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
-  ggplot(aes(x=period, fill=RCP, y=mean_hectares)) + geom_bar(stat="identity", position="dodge") + facet_grid(. ~ climateModel)
+  ggplot(aes(x=RCP, fill=period, y=mean_hectares)) + geom_bar(stat="identity", position="dodge") + facet_grid(. ~ climateModel) +
+  coord_flip()
 
-CAonly %>% ggplot(aes(x=period, y=hectares, color=climateModel)) + geom_boxplot() + facet_wrap(~ ClimateRegion)
+
+CAonly %>% ggplot(aes(x=period, y=log(hectares), color=climateModel)) + geom_boxplot() + facet_wrap(~ ClimateRegion) + coord_flip()
+
+CAonly %>% group_by(climateModel, County, ClimateRegion, RCP, PopulationGrowth, year) %>% 
+  summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
+  ggplot(aes(x=year, y=mean_hectares, color=PopulationGrowth)) + 
+  geom_line() + 
+  facet_grid(ClimateRegion ~ climateModel + RCP) 
+
+
+
