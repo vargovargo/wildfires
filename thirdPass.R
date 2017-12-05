@@ -1,3 +1,5 @@
+rm(list = ls())
+
 library(ncdf4)
 library(tidyverse)
 
@@ -34,6 +36,8 @@ flist <- list.files(path = "data/", pattern = "^.*\\.(nc|NC|Nc|Nc)$")
 #   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC52/rcp85/MIROC52_85_AA.all.bau.mu.nc"
 # )
 
+files=flist
+
 
 dname = "hectares"
 
@@ -45,8 +49,9 @@ process_nc <- function(files){
       # download.file(url = flist[1], destfile = "~/tempWF.nc")
       
       # open a conneciton to the ith nc file
-      ncin <- nc_open(paste0("data/", flist[i]))
+      ncin <- nc_open(paste0("data/", files[i]))
       
+      i=1
       # store values from variables and atributes
       attributes(ncin$dim)$names
       nc_lat <- ncvar_get(ncin, "lat")
@@ -84,23 +89,20 @@ process_nc <- function(files){
         cbind(matrix(as.vector(tmp_array), nrow = n_lon*n_lat, ncol = n_year)) %>% 
         mutate(model=unlist(str_split(string = files[i], pattern = "_"))[1],
                scenario = unlist(str_split(string = files[i], pattern = "_"))[2],
-               population = unlist(str_split(string = files[i], pattern = "_"))[3]
-               ) %>% 
+               population = unlist(str_split(string = files[i], pattern = "_"))[3]) %>% 
         select(model, scenario, population, lon, lat, 3:150)
         
       names(bar) <- c("model","scenario","population","lon","lat",1954:2100) 
-      
-      bar <- bar %>%  
-        
+    
       
       # set the name of my new variable and bind the new data to it
-      if (exists("wildfire")){
+      if(exists("wildfire")){
         wildfire <- bind_rows(wildfire, bar)
       }else{
         wildfire <- bar
       }
       # tidy up, not sure if necesarry really, but neater
-      rm(nc_wildfire, nc_lat, nc_lon, ncin, bar)
+      rm(nc_year, nc_lat, nc_lon, ncin, bar)
     }
     
     return(wildfire)
