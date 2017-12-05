@@ -127,12 +127,30 @@ CAonly <- inner_join(all_fire, locationData) %>% na.omit() %>%
                                          ifelse(year %in% c(2000:2020), "early (2000-2020)",
                                                 ifelse(year %in% c(2040:2060),"mid-century (2040-2060)",
                                                        ifelse(year %in% c(2080:2100), "late-century (2080-2100)", "between")))),
-                                         levels = c("baseline (1961-1990)","early (2000-2020)","mid-century (2040-2060)","late-century (2080-2100)","between")),
-                  climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
-                                               ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
-                                                      ifelse(model == "HadGEM2-ES","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs"))),
-                                        levels = c("CanESM2 (average)", "CNRM-CM5 (Cool/Wet)","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs")))
+                                         levels = c("baseline (1961-1990)","early (2000-2020)","mid-century (2040-2060)","late-century (2080-2100)","between"))) %>%
+  filter(period != "between") %>%
+  mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
+                                      ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
+                                             ifelse(model == "HadGEM2-ES","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs"))),
+                               levels = c("CanESM2 (average)", "CNRM-CM5 (Cool/Wet)","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs")),
+         
+         RCP = factor(ifelse(scenario == "45", "RCP4.5 (emissions peak 2040, stabiliazation by 2100)","emissions continue to rise throughout the 21st century"),
+                               levels = c("RCP4.5 (emissions peak 2040, stabiliazation by 2100)","emissions continue to rise throughout the 21st century")), 
+                      
+         PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
+                                           ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
+                                    levels = c("Low Projection", "Central Projection","High Projection")))
+         
+                 
+                  
+CAonly %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth, lon, lat) %>% 
+  summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
+  filter(PopulationGrowth == "Central Projection") %>%
+  ggplot(aes(x=lon, y=lat, color=mean_hectares)) + geom_point() + facet_grid(climateModel + RCP ~ period)
 
 
+CAonly %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth, ClimateRegion) %>% 
+  summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
+  ggplot(aes(x=period, fill=RCP, y=mean_hectares)) + geom_bar(stat="identity", position="dodge") + facet_grid(. ~ climateModel)
 
-CAonly %>% group_by(climateModel, ClimateRegion, scenario, population)
+CAonly %>% ggplot(aes(x=period, y=hectares, color=climateModel)) + geom_boxplot() + facet_wrap(~ ClimateRegion)
