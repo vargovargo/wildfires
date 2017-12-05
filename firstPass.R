@@ -32,7 +32,7 @@ library(jsonlite)
 library(tidyverse)
 
 
-CalAdapt <- as.data.frame(fromJSON("http://api.cal-adapt.org/api/series/fire_HadGEM2-ES_rcp45_H_mu/rasters/?ref=%2Fapi%2Fcounties%2F1%2F"))
+CalAdapt <- read.csv("http://api.cal-adapt.org/api/series/fire_HadGEM2-ES_rcp45_H_mu/rasters/?ref=%2Fapi%2Fcounties%2F1%2F?format=csv")
 
 
   ACSpop <- ACSpop[-1,]
