@@ -108,7 +108,7 @@ process_nc <- function(files){
 
 all_fire <- process_nc(flist)
 
-write.csv(all_fire,"./data/all_WF.csv", row.names=F)
+# write.csv(all_fire,"./data/all_WF.csv", row.names=F)
 
 expand.grid(lon = unique(all_fire$lon), lat = unique(all_fire$lat)) %>% write.csv(.,"./data/latlon.csv", row.names = F)
 

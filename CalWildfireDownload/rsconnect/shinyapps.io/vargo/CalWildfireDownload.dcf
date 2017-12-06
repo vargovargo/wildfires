@@ -1,0 +1,12 @@
+name: CalWildfireDownload
+title: CalWildfireDownload
+username:
+account: vargo
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 244979
+bundleId: 1118230
+url: https://vargo.shinyapps.io/CalWildfireDownload/
+when: 1512540302.62093
+asMultiple: FALSE
+asStatic: FALSE
