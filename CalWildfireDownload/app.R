@@ -118,7 +118,9 @@ ui <- fluidPage(
                       c("RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)")),
          radioButtons("popVar",
                       "Select a Population Projection",
-                      c("Low","Central (bau)","High"))
+                      c("Low","Central (bau)","High")),
+         # Download Button
+         downloadButton("downloadWFcsv", "Download csv")
             
          ),
       
@@ -151,6 +153,7 @@ server <- function(input, output) {
      
      process_single_nc(modelVar = input$modelVar, rcpVar = input$rcpVar, popVar = input$popVar)
     
+     
   })
    
   
@@ -171,6 +174,19 @@ server <- function(input, output) {
        scale_colour_gradient(low = "white", high = "red")
      
    })
+   
+   
+   # Downloadable csv of selected dataset ----
+   output$downloadWFcsv <- downloadHandler(
+     filename = function(){
+       model <- modelMat[input$modelVar]
+       rcp <- rcpMat[input$rcpVar]
+       pop <- popMat[input$popVar]
+       paste0("CA_wildfire_",model,"_",rcp,"_",pop,".csv")},
+     content = function(file) {
+       write.csv(WFdata(), file, row.names = FALSE)
+     }
+   )
    
    
 }
