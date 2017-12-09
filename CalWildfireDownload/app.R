@@ -24,7 +24,6 @@ names(modelMat) <- c("CanESM2 (average)", "CNRM-CM5 (Cool/Wet)","HadGEM2-ES (War
 
 process_single_nc <- function(modelVar, rcpVar, popVar){
   
-  
   model <- modelMat[modelVar]
   rcp <- rcpMat[rcpVar]
   pop <- popMat[popVar] 
