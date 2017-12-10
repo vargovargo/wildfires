@@ -155,11 +155,11 @@ CAonly %>% group_by(climateModel,County,  ClimateRegion, period, RCP, Population
   spread(key = period, value = mean_hectares) %>%
   gather(`early (2000-2020)`,`mid-century (2040-2060)`,`late-century (2080-2100)`, key = futurePeriod, value = futureHa) %>%
   mutate(pct_change = 100*(futureHa -`baseline (1961-1990)`)/`baseline (1961-1990)`) %>%
-  ggplot(aes(x=ClimateRegion, y=pct_change, fill=futurePeriod)) + geom_boxplot() + scale_color_discrete("white","black")+ facet_grid(.~ RCP)
+  ggplot(aes(x=ClimateRegion, y=pct_change, fill=futurePeriod)) + geom_boxplot() + facet_grid(.~ RCP)
 
 
+POPproj <- datatable(read.csv("./data/P3_Complete.csv", header=T))
 
-POPproj<- read.csv("./data/P3_Complete.csv", header=T)
 
 
 
