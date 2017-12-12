@@ -2,7 +2,7 @@ rm(list = ls())
 
 library(ncdf4)
 library(tidyverse)
-library(DT)
+library(data.table)
 
 setwd("~/Wildfires/")
 # retrieve a list of nc files in my data folder:
@@ -109,7 +109,7 @@ process_nc <- function(files){
 
 all_fire <- process_nc(flist)
 
-all_fire_dt <- datatable(data = all_fire)
+all_fire_dt <- data.table(data = all_fire)
 
 
 # write.csv(all_fire,"./data/all_WF.csv", row.names=F)
@@ -120,86 +120,101 @@ expand.grid(lon = unique(all_fire$lon), lat = unique(all_fire$lat)) %>% write.cs
 locationData <- read.csv("https://raw.githubusercontent.com/vargovargo/wildfires/master/LOCAcounties.csv", header=T) %>% 
   select(lon, lat, County, ClimateRegion, stcoFIPS)
 
-CAonly <- inner_join(all_fire, locationData) %>% na.omit() %>%
+CAannual <- inner_join(all_fire_dt, locationData) %>% na.omit() %>%
   filter(County != "") %>%
   gather(6:152, key = "year", value = "hectares") %>% 
   mutate(year = as.integer(as.character(year))) %>% 
-           mutate(period = factor(ifelse(year %in% c(1961:1990),"baseline (1961-1990)", 
-                                         ifelse(year %in% c(2000:2020), "early (2000-2020)",
-                                                ifelse(year %in% c(2040:2060),"mid-century (2040-2060)",
-                                                       ifelse(year %in% c(2080:2100), "late-century (2080-2100)", "between")))),
-                                         levels = c("baseline (1961-1990)","early (2000-2020)","mid-century (2040-2060)","late-century (2080-2100)","between"))) %>%
-  filter(period != "between") %>%
+  filter(year >= 2010 & year <= 2060) %>%
   mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
                                       ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
                                              ifelse(model == "HadGEM2-ES","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs"))),
                                levels = c("CanESM2 (average)", "CNRM-CM5 (Cool/Wet)","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs")),
          
          RCP = factor(ifelse(scenario == "45", "RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)"),
-                               levels = c("RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)")), 
-                      
+                      levels = c("RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)")), 
+         
          PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
-                                           ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
-                                    levels = c("Low Projection", "Central Projection","High Projection")))
-
-CAonly %>% group_by(climateModel,County,  ClimateRegion, period, RCP, PopulationGrowth) %>% 
-  summarise(mean_hectares = mean(hectares, na.rm=T))%>%
-  spread(key = period, value = mean_hectares) %>%
-  gather(`early (2000-2020)`,`mid-century (2040-2060)`,`late-century (2080-2100)`,key = futurePeriod, value = futureHa) %>%
-  mutate(pct_change = 100*(futureHa -`baseline (1961-1990)`)/`baseline (1961-1990)`) %>%
-  ggplot(aes(x=climateModel, y=pct_change, color=futurePeriod, shape=RCP)) + geom_jitter(alpha=0.6) + facet_grid(ClimateRegion ~ PopulationGrowth) +coord_flip()
+                                          ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
+                                   levels = c("Low Projection", "Central Projection","High Projection")))
 
 
-CAonly %>% group_by(climateModel,County,  ClimateRegion, period, RCP, PopulationGrowth) %>% 
-  summarise(mean_hectares = mean(hectares, na.rm=T))%>%
-  spread(key = period, value = mean_hectares) %>%
-  gather(`early (2000-2020)`,`mid-century (2040-2060)`,`late-century (2080-2100)`, key = futurePeriod, value = futureHa) %>%
-  mutate(pct_change = 100*(futureHa -`baseline (1961-1990)`)/`baseline (1961-1990)`) %>%
-  ggplot(aes(x=ClimateRegion, y=pct_change, fill=futurePeriod)) + geom_boxplot() + facet_grid(.~ RCP)
+POPproj <- read.csv("./data/P3_Complete.csv", header=T) %>%
+  mutate(ageCat = ifelse(agerc <=5, "under5",ifelse(agerc >=65,"over65","other"))) %>%
+  filter(ageCat != "other") %>%
+    mutate(gender = ifelse(sex == 1,"Female","Male"),
+           race = factor(ifelse(race7 == 1, "White, Non-Hispanic", 
+                         ifelse(race7 == 2, "Black, Non-Hispanic",
+                                ifelse(race7 == 3, "American Indian or Alaska Native, Non-Hispanic",
+                                       ifelse(race7 == 4,"Asian, Non-Hispanic", 
+                                              ifelse(race7 == 5, "Native Hawaiian or Pacific Islander, Non-Hispanic",
+                                                     ifelse(race7 == 6,"Multiracial (two or more of above races), Non-Hispanic","Hispanic (any race)")))))), 
+           levels = c("White, Non-Hispanic", 
+                      "Black, Non-Hispanic", 
+                      "American Indian or Alaska Native, Non-Hispanic", 
+                      "Asian, Non-Hispanic", 
+                      "Native Hawaiian or Pacific Islander, Non-Hispanic",
+                      "Multiracial (two or more of above races), Non-Hispanic",
+                      "Hispanic (any race)")), 
+           stcoFIPS = as.numeric(as.character(fips))) %>%
+  group_by(ageCat, gender, race, year, stcoFIPS) %>%
+    summarise(people = sum(perwt, na.rm=T))
+  
+CAannual <- datatable(CAannual)
+POPproj <- datatable(POPproj)
 
+fullTab <- merge(CAannual, POPproj)
+?merge
 
-POPproj <- datatable(read.csv("./data/P3_Complete.csv", header=T))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-geom_point(aes(colour=factor(label), 
-               fill = factor(label)), shape=21, size = 4) + 
-  scale_fill_manual(values=c("blue", "cyan4")) + 
-  scale_colour_manual(values=c("white", "black"))
   
 # write.csv("./data/hectaresByClimateRegion.csv", row.names=F)
 
+  
+# random plots
+CAperiods <- inner_join(all_fire, locationData) %>% na.omit() %>%
+    filter(County != "") %>%
+    gather(6:152, key = "year", value = "hectares") %>% 
+    mutate(year = as.integer(as.character(year))) %>% 
+    mutate(period = factor(ifelse(year %in% c(1961:1990),"baseline (1961-1990)", 
+                                  ifelse(year %in% c(2000:2020), "early (2000-2020)",
+                                         ifelse(year %in% c(2040:2060),"mid-century (2040-2060)",
+                                                ifelse(year %in% c(2080:2100), "late-century (2080-2100)", "between")))),
+                           levels = c("baseline (1961-1990)","early (2000-2020)","mid-century (2040-2060)","late-century (2080-2100)","between"))) %>%
+    filter(period != "between") %>%
+    mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
+                                        ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
+                                               ifelse(model == "HadGEM2-ES","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs"))),
+                                 levels = c("CanESM2 (average)", "CNRM-CM5 (Cool/Wet)","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs")),
+           
+           RCP = factor(ifelse(scenario == "45", "RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)"),
+                        levels = c("RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)")), 
+           
+           PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
+                                            ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
+                                     levels = c("Low Projection", "Central Projection","High Projection")))
+  
+  CAperiods %>% group_by(climateModel,County,  ClimateRegion, period, RCP, PopulationGrowth) %>% 
+    summarise(mean_hectares = mean(hectares, na.rm=T))%>%
+    spread(key = period, value = mean_hectares) %>%
+    gather(`early (2000-2020)`,`mid-century (2040-2060)`,`late-century (2080-2100)`, key = futurePeriod, value = futureHa) %>%
+    mutate(pct_change = 100*(futureHa -`baseline (1961-1990)`)/`baseline (1961-1990)`) %>%
+    ggplot(aes(x=ClimateRegion, y=pct_change, fill=futurePeriod)) + geom_boxplot() + facet_grid(.~ RCP) +coord_flip()
+  
                   
-CAonly %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth, lon, lat) %>% 
+CAperiods %>% group_by(climateModel, ClimateRegion, period, RCP, PopulationGrowth, lon, lat) %>% 
   summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
   filter(PopulationGrowth == "Central Projection") %>%
   ggplot(aes(x=lon, y=lat, color=mean_hectares)) + geom_point() + facet_grid(climateModel + RCP ~ period)
 
 
-CAonly %>% group_by(climateModel, period, RCP, PopulationGrowth, ClimateRegion) %>% 
+CAperiods %>% group_by(climateModel, period, RCP, PopulationGrowth, ClimateRegion) %>% 
   summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
   ggplot(aes(x=RCP, fill=period, y=mean_hectares)) + geom_bar(stat="identity", position="dodge") + facet_grid(. ~ climateModel) +
   coord_flip()
 
 
-CAonly %>% ggplot(aes(x=period, y=log(hectares), color=climateModel)) + geom_boxplot() + facet_wrap(~ ClimateRegion) + coord_flip()
+CAperiods %>% ggplot(aes(x=period, y=log(hectares), color=climateModel)) + geom_boxplot() + facet_wrap(~ ClimateRegion) + coord_flip()
 
-CAonly %>% group_by(climateModel, County, ClimateRegion, RCP, PopulationGrowth, year) %>% 
+CAperiods %>% group_by(climateModel, County, ClimateRegion, RCP, PopulationGrowth, year) %>% 
   summarise(mean_hectares = mean(hectares, na.rm=T)) %>% 
   ggplot(aes(x=year, y=mean_hectares, color=PopulationGrowth)) + 
   geom_line() + 
