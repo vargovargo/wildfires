@@ -40,6 +40,7 @@ flist <- list.files(path = "data/", pattern = "^.*\\.(nc|NC|Nc|Nc)$")
 #####################################
 # Define our function
 #####################################
+dname = "hectares"
 
 process_nc <- function(files){
     # iterate through the nc
@@ -119,10 +120,9 @@ locationData <- as.data.table(read.csv("https://raw.githubusercontent.com/vargov
 
 # process combined WildFire Data 
 CAannual <- all_fire_dt[locationData] %>% na.omit() %>%
-  filter(County != "") %>%
+  filter(ClimateRegion == "South Coast") %>%
   gather(6:152, key = "year", value = "hectares") %>% 
   mutate(year = as.integer(as.character(year))) %>% 
-  filter(year >= 2010 & year <= 2060) %>%
   mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
                                       ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
                                              ifelse(model == "HadGEM2-ES","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs"))),
