@@ -7,34 +7,34 @@ library(data.table)
 setwd("~/Wildfires/")
 # retrieve a list of nc files in my data folder:
 
-flist <- list.files(path = "data/", pattern = "^.*\\.(nc|NC|Nc|Nc)$")
+#flist <- list.files(path = "data/", pattern = "^.*\\.(nc|NC|Nc|Nc)$")
 
-#flist <- c(
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp45/CNRM-CM5_45_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp45/CNRM-CM5_45_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp45/CNRM-CM5_45_AA.all.bau.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp85/CNRM-CM5_85_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp85/CNRM-CM5_85_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp85/CNRM-CM5_85_AA.all.bau.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp45/CanESM2_45_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp45/CanESM2_45_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp45/CanESM2_45_AA.all.bau.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp85/CanESM2_85_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp85/CanESM2_85_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp85/CanESM2_85_AA.all.bau.mu.nc",  
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp45/HadGEM2-ES_45_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp45/HadGEM2-ES_45_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp45/HadGEM2-ES_45_AA.all.bau.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp85/HadGEM2-ES_85_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp85/HadGEM2-ES_85_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp85/HadGEM2-ES_85_AA.all.bau.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC5/rcp45/MIROC52_45_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC52/rcp45/MIROC52_45_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC52/rcp45/MIROC52_45_AA.all.bau.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC52/rcp85/MIROC52_85_AA.all.H.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC52/rcp85/MIROC52_85_AA.all.L.mu.nc",
-#   "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC52/rcp85/MIROC52_85_AA.all.bau.mu.nc"
-# )
+flist <- c(
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp45/CNRM-CM5_45_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp45/CNRM-CM5_45_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp45/CNRM-CM5_45_AA.all.bau.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp85/CNRM-CM5_85_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp85/CNRM-CM5_85_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CNRM-CM5/rcp85/CNRM-CM5_85_AA.all.bau.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp45/CanESM2_45_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp45/CanESM2_45_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp45/CanESM2_45_AA.all.bau.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp85/CanESM2_85_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp85/CanESM2_85_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/CanESM2/rcp85/CanESM2_85_AA.all.bau.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp45/HadGEM2-ES_45_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp45/HadGEM2-ES_45_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp45/HadGEM2-ES_45_AA.all.bau.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp85/HadGEM2-ES_85_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp85/HadGEM2-ES_85_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/HadGEM2-ES/rcp85/HadGEM2-ES_85_AA.all.bau.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC5/rcp45/MIROC5_45_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC5/rcp45/MIROC5_45_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC5/rcp45/MIROC5_45_AA.all.bau.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC5/rcp85/MIROC5_85_AA.all.H.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC5/rcp85/MIROC5_85_AA.all.L.mu.nc",
+  "http://albers.cnr.berkeley.edu/data/ucmerced/wildfire/MIROC5/rcp85/MIROC5_85_AA.all.bau.mu.nc"
+)
 
 
 #####################################
@@ -47,9 +47,11 @@ process_nc <- function(files){
     for (i in 1:length(files)){
      
       # download.file(url = flist[1], destfile = "~/tempWF.nc")
+      ncdfURL <- paste0(flist[i])
+      dest <-  paste0("~/tempWFnetcdf.nc") 
+      download.file(url=ncdfURL,destfile=dest, mode = "wb") 
       
-      # open a conneciton to the ith nc file
-      ncin <- nc_open(paste0("data/", files[i]))
+      ncin <- nc_open(dest)
       
       # store values from variables and atributes
       attributes(ncin$dim)$names
@@ -86,7 +88,7 @@ process_nc <- function(files){
       
       bar <- data.frame(expand.grid(lon = nc_lon, lat = nc_lat)) %>%
         cbind(matrix(as.vector(tmp_array), nrow = n_lon*n_lat, ncol = n_year)) %>% 
-        mutate(model=unlist(str_split(string = files[i], pattern = "_"))[1],
+        mutate(model=unlist(str_split(string = files[i], pattern = "/"))[7],
                scenario = unlist(str_split(string = files[i], pattern = "_"))[2],
                population = unlist(str_split(string = files[i], pattern = "_"))[3]) %>% 
         select(model, scenario, population, lon, lat, 3:150)
@@ -100,7 +102,7 @@ process_nc <- function(files){
       }else{
         wildfire <- bar
       }
-      # tidy up, not sure if necesarry really, but neater
+      # tidy up, not sure if necessary really, but neater
       rm(nc_year, nc_lat, nc_lon, ncin, bar)
     }
     
@@ -119,8 +121,8 @@ locationData <- as.data.table(read.csv("https://raw.githubusercontent.com/vargov
   select(lon, lat, County, ClimateRegion, stcoFIPS) %>% setkeyv(keycols)
 
 # process combined WildFire Data 
-SCannual <- all_fire_dt[locationData] %>% na.omit() %>%
-  filter(ClimateRegion == "South Coast") %>%
+fourCounty <- all_fire_dt[locationData] %>% na.omit() %>%
+  filter(County %in% c("Orange","San Diego", "Imperial","Riverside")) %>%
   gather(6:152, key = "year", value = "hectares") %>% 
   mutate(year = as.integer(as.character(year))) %>% 
   mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
@@ -134,13 +136,13 @@ SCannual <- all_fire_dt[locationData] %>% na.omit() %>%
          PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
                                           ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
                                    levels = c("Low Projection", "Central Projection","High Projection")))  %>% 
-  group_by(climateModel,stcoFIPS, County, ClimateRegion, year, RCP, PopulationGrowth) %>% 
+  group_by(climateModel, year, RCP, PopulationGrowth, County) %>% 
   summarise(total_hectares = sum(hectares, na.rm=T)) %>%
-  as.data.table() %>% setkeyv(c("year","stcoFIPS"))
+  as.data.table() %>% setkeyv(c("year"))
 
-SCannual %>%
+fourCounty %>%
          filter(PopulationGrowth == "Central Projection") %>%
-         ggplot(aes(x=year, y=total_hectares, color=County, linetype=RCP)) + geom_line() +facet_grid(climateModel ~. )
+         ggplot(aes(x=year, y=total_hectares, color=RCP)) + geom_line() +facet_grid(climateModel ~ County)
        
 
 # bring in Population Projection Data
@@ -167,7 +169,9 @@ POPproj <- as.data.table(read.csv("./data/P3_Complete.csv", header=T)) %>%
   as.data.table() %>% setkeyv(c("year","stcoFIPS"))
   
 
-fullTab <- merge(SouthCoastAnnual, POPproj, allow.cartesian = T) %>% 
+
+#join population to wildfire data, may need to add FIPS to wildfire data above
+fullTab <- merge(fourCounty, POPproj, allow.cartesian = T) %>% 
   mutate(decade = factor(ifelse(year %in% c(2010:2019),"2010s",
                                 ifelse(year %in% c(2020:2029), "2020s",
                                         ifelse(year %in% c(2030:2039),"2030s",
@@ -208,17 +212,17 @@ CAstate %>%
   ggplot(aes(x=year, y=Ha, linetype=RCP)) + geom_line() +facet_grid(climateModel ~. )
 
 
-  
-# random plots
+#########################################  
+# plots by period
 SCperiods <- all_fire_dt[locationData] %>% na.omit() %>%
-    filter(ClimateRegion == "South Coast") %>%
+    filter(County %in% c("Orange","San Diego", "Imperial","Riverside")) %>%
     gather(6:152, key = "year", value = "hectares") %>% 
     mutate(year = as.integer(as.character(year))) %>% 
-    mutate(period = factor(ifelse(year %in% c(1961:1990),"baseline (1961-1990)", 
+    mutate(period = factor(ifelse(year %in% c(1960:1980),"baseline (1960-1980)", 
                                   ifelse(year %in% c(2000:2020), "early (2000-2020)",
                                          ifelse(year %in% c(2040:2060),"mid-century (2040-2060)",
                                                 ifelse(year %in% c(2080:2100), "late-century (2080-2100)", "between")))),
-                           levels = c("baseline (1961-1990)","early (2000-2020)","mid-century (2040-2060)","late-century (2080-2100)","between"))) %>%
+                           levels = c("baseline (1960-1980)","early (2000-2020)","mid-century (2040-2060)","late-century (2080-2100)","between"))) %>%
     filter(period != "between") %>%
     mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
                                         ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
@@ -231,9 +235,19 @@ SCperiods <- all_fire_dt[locationData] %>% na.omit() %>%
            PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
                                             ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
                                      levels = c("Low Projection", "Central Projection","High Projection")))
-  
+ 
+SCperiods %>% 
+  group_by(climateModel,County, stcoFIPS, ClimateRegion, period, RCP, PopulationGrowth) %>% 
+  summarise(Mean = sum(hectares, na.rm=T)/20) %>%
+  ggplot(aes(x=period, y=Mean, color=County)) + geom_jitter()+ ggtitle("")
+
+######################################################
+# Computing percentage change
+
+
+ 
+
 midcentury <- SCperiods %>% 
-  filter(PopulationGrowth == "Central Projection") %>%
   group_by(climateModel,County, stcoFIPS, ClimateRegion, period, RCP, PopulationGrowth) %>% 
     summarise(mean_hectares = mean(hectares, na.rm=T))%>%
     spread(key = period, value = mean_hectares) %>%
@@ -244,7 +258,7 @@ midcentury <- SCperiods %>%
 
 # box plots of change by period
 midcentury %>%
-  ggplot(aes(x=ClimateRegion, y=pct_change, fill=futurePeriod)) + geom_boxplot() + facet_grid(climateModel ~ RCP) 
+  ggplot(aes(x=RCP, y=pct_change, fill=futurePeriod)) + geom_jitter() + facet_grid(climateModel ~ County) 
 
 
 POPchange <- POPproj %>% spread(key = year, value = people) %>%
