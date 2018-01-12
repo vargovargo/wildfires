@@ -121,7 +121,7 @@ locationData <- as.data.table(read.csv("https://raw.githubusercontent.com/vargov
   select(lon, lat, County, ClimateRegion, stcoFIPS) %>% setkeyv(keycols)
 
 # process combined WildFire Data 
-fourCounty <- all_fire_dt[locationData] %>% na.omit() %>%
+fourCountyAnnual <- all_fire_dt[locationData] %>% na.omit() %>%
   filter(County %in% c("Orange","San Diego", "Imperial","Riverside")) %>%
   gather(6:152, key = "year", value = "hectares") %>% 
   mutate(year = as.integer(as.character(year))) %>% 
@@ -136,14 +136,102 @@ fourCounty <- all_fire_dt[locationData] %>% na.omit() %>%
          PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
                                           ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
                                    levels = c("Low Projection", "Central Projection","High Projection")))  %>% 
-  group_by(climateModel, year, RCP, PopulationGrowth, County) %>% 
+  group_by(climateModel, year, RCP, PopulationGrowth) %>% 
   summarise(total_hectares = sum(hectares, na.rm=T)) %>%
   as.data.table() %>% setkeyv(c("year"))
 
-fourCounty %>%
-         filter(PopulationGrowth == "Central Projection") %>%
-         ggplot(aes(x=year, y=total_hectares, color=RCP)) + geom_line() +facet_grid(climateModel ~ County)
+fourCountyAnnual %>%
+         ggplot(aes(x=year, y=total_hectares, color=climateModel, linetype=RCP, alpha=PopulationGrowth)) + geom_line() 
        
+
+
+# process combined WildFire Data 
+SanDiegoAnnual <- all_fire_dt[locationData] %>% na.omit() %>%
+  filter(County %in% c("San Diego")) %>%
+  gather(6:152, key = "year", value = "hectares") %>% 
+  mutate(year = as.integer(as.character(year))) %>% 
+  mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
+                                      ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
+                                             ifelse(model == "HadGEM2-ES","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs"))),
+                               levels = c("CanESM2 (average)", "CNRM-CM5 (Cool/Wet)","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs")),
+         
+         RCP = factor(ifelse(scenario == "45", "RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)"),
+                      levels = c("RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)")), 
+         
+         PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
+                                          ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
+                                   levels = c("Low Projection", "Central Projection","High Projection")))  %>% 
+  group_by(climateModel, year, RCP, PopulationGrowth) %>% 
+  summarise(total_hectares = sum(hectares, na.rm=T))%>%
+  mutate(decade = factor(ifelse(year %in% c(1960:1969),"1960s",
+                                ifelse(year %in% c(1970:1979),"1970s",
+                                       ifelse(year %in% c(1980:1989),"1980s",
+                                              ifelse(year %in% c(1990:1999),"1990s",
+                                                     ifelse(year %in% c(2000:2009),"2000s",
+                                                            ifelse(year %in% c(2010:2019),"2010s",
+                                                                   ifelse(year %in% c(2000:2009),"2000s",
+                                                                          ifelse(year %in% c(2010:2019),"2010s",
+                                                                                 ifelse(year %in% c(2020:2029),"2020s",
+                                                                                        ifelse(year %in% c(2030:2039),"2030s",
+                                                                                               ifelse(year %in% c(2040:2049),"2040s",
+                                                                                                      ifelse(year %in% c(2050:2059),"2050s",
+                                                                                                             ifelse(year %in% c(2060:2069),"2060s",
+                                                                                                                    ifelse(year %in% c(2070:2079),"2070s",
+                                                                                                                           ifelse(year %in% c(2080:2089),"2080s","2090s"))))))))))))))),
+                         levels = c("1960s","1970s","1980s","1990s","2000s","2010s","2020s","2030s","2040s","2050s","2060s","2070s","2080s","2090s"))) %>%
+  as.data.table() %>% setkeyv(c("year"))
+
+SanDiegoAnnual %>%
+  ggplot(aes(x=year, y=total_hectares, color=climateModel, linetype=RCP)) + geom_line() 
+SanDiegoAnnual %>%
+ggplot() + geom_boxplot(aes(x=decade, y=total_hectares, group=interaction(decade, RCP), fill=RCP)) + theme(legend.position = "bottom") + facet_wrap(~climateModel) 
+
+# process combined WildFire Data 
+CAAnnual <- all_fire_dt[locationData] %>% na.omit() %>%
+  gather(6:152, key = "year", value = "hectares") %>% 
+  mutate(year = as.integer(as.character(year))) %>% 
+  mutate(climateModel = factor(ifelse(model == "CanESM2","CanESM2 (average)",
+                                      ifelse(model == "CNRM-CM5","CNRM-CM5 (Cool/Wet)",
+                                             ifelse(model == "HadGEM2-ES","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs"))),
+                               levels = c("CanESM2 (average)", "CNRM-CM5 (Cool/Wet)","HadGEM2-ES (Warm/Dry)","MIROC5 (Complement/Covers a range of outputs")),
+         
+         RCP = factor(ifelse(scenario == "45", "RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)"),
+                      levels = c("RCP4.5 (emissions peak 2040, stabiliazation by 2100)","RCP8.5 (emissions continue to rise throughout the 21st century)")), 
+         
+         PopulationGrowth = factor(ifelse(population == "AA.all.bau.mu.nc","Central Projection",
+                                          ifelse(population == "AA.all.L.mu.nc","Low Projection","High Projection")),
+                                   levels = c("Low Projection", "Central Projection","High Projection")))  %>% 
+  group_by(climateModel, year, RCP, PopulationGrowth) %>% 
+  summarise(total_hectares = sum(hectares, na.rm=T),
+             pct = mean(hectares/3600, na.rm=T)) %>%
+  mutate(decade = factor(ifelse(year %in% c(1960:1969),"1960s",
+                                ifelse(year %in% c(1970:1979),"1970s",
+                                       ifelse(year %in% c(1980:1989),"1980s",
+                                              ifelse(year %in% c(1990:1999),"1990s",
+                                                     ifelse(year %in% c(2000:2009),"2000s",
+                                                            ifelse(year %in% c(2010:2019),"2010s",
+                                                                   ifelse(year %in% c(2000:2009),"2000s",
+                                                                          ifelse(year %in% c(2010:2019),"2010s",
+                                                                                 ifelse(year %in% c(2020:2029),"2020s",
+                                                                                        ifelse(year %in% c(2030:2039),"2030s",
+                                                                                               ifelse(year %in% c(2040:2049),"2040s",
+                                                                                                      ifelse(year %in% c(2050:2059),"2050s",
+                                                                                                             ifelse(year %in% c(2060:2069),"2060s",
+                                                                                                                    ifelse(year %in% c(2070:2079),"2070s",
+                                                                                                                           ifelse(year %in% c(2080:2089),"2080s","2090s"))))))))))))))),
+                         levels = c("1960s","1970s","1980s","1990s","2000s","2010s","2020s","2030s","2040s","2050s","2060s","2070s","2080s","2090s"))) %>%
+  as.data.table() %>% setkeyv(c("year"))
+
+CAAnnual %>%
+  ggplot() + geom_line(aes(x=year, y=total_hectares, color=climateModel, linetype=RCP)) 
+
+CAAnnual %>%
+  ggplot() + geom_boxplot(aes(x=as.factor(decade), y=total_hectares, group=interaction(decade, RCP), fill=RCP)) + theme(legend.position = "bottom") + facet_wrap(~climateModel) 
+
+
+
+
+
 
 # bring in Population Projection Data
 POPproj <- as.data.table(read.csv("./data/P3_Complete.csv", header=T)) %>%
