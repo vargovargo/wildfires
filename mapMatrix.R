@@ -118,7 +118,7 @@ all_fire_dt <- as.data.table(process_nc(flist)) %>% setkeyv(keycols)
 
 # bring in file that links LOCA points to counties
 locationData <- as.data.table(read.csv("https://raw.githubusercontent.com/vargovargo/wildfires/master/LOCAcounties.csv", header=T)) %>% 
-  select(lon, lat, County, ClimateRegion, stcoFIPS) %>% setkeyv(keycols)
+  select(lon, lat, County, ClimateRegion, stcoFIPS) %>% setkeyv(keycols) 
 
 
 threshold <- 40.4686 # 100 acres
@@ -135,18 +135,23 @@ SanDiegoMaps <- all_fire_dt[locationData] %>% na.omit() %>%
          period = factor(ifelse(year %in% c(2000:2019),"current",
                                 ifelse(year %in% c(2040:2059),"future", "other")),
                                 levels = c("current","future","other")),
-         geography = "San Diego", 
+         geography = "San Diego",
          freq = ifelse(hectares > threshold, 1, 0))  %>% 
   filter(period != "other") %>%
   group_by(lat, lon, period, geography) %>% 
   summarise(total_hectares = sum(hectares, na.rm=T),
-            mean_hectares = mean(hectares, na.rm=T)/80,
+            mean_hectares = mean(hectares, na.rm=T),
             probability = as.numeric(sum(freq)/80))%>%
   as.data.table() %>% setkeyv(c("lat", "lon"))
 
+  
+SanDiegoMaps %>%
+  ggplot(aes(x=lon, y=lat, color=probability)) + geom_point(size=3, shape=15) + facet_grid(.~ period)  + scale_color_distiller(palette = "Spectral")
 
 SanDiegoMaps %>%
-  ggplot(aes(x=lon, y=lat, color=probability)) + geom_point(size=3, shape=15) + facet_grid(.~ period)
+  ggplot(aes(x=lon, y=lat, color=mean_hectares)) + geom_point(size=3, shape=15) + facet_grid(.~ period) + 
+  scale_color_distiller(palette = "RdGy")
+
 
 
 SanDiegoMaps %>%
@@ -174,13 +179,21 @@ CAMaps <- all_fire_dt[locationData] %>% na.omit() %>%
   filter(period != "other") %>%
   group_by(lat, lon, period, geography) %>% 
   summarise(total_hectares = sum(hectares, na.rm=T),
-            mean_hectares = sum(hectares, na.rm=T)/80,
+            mean_hectares = mean(hectares, na.rm=T),
             probability = sum(freq)/80)%>%
   as.data.table() %>% setkeyv(c("lat", "lon"))
 
 
+
+
 CAMaps %>%
-  ggplot(aes(x=lon, y=lat, color=probability)) + geom_point(size=1, shape=15) + facet_grid(.~ period)
+  ggplot(aes(x=lon, y=lat, color=probability)) + geom_point(size=1, shape=15) + facet_grid(.~ period) + 
+  scale_color_distiller(palette = "Spectral")
+
+CAMaps %>%
+  ggplot(aes(x=lon, y=lat, color=mean_hectares)) + geom_point(size=1, shape=15) + facet_grid(.~ period) + 
+  scale_color_distiller(palette = "RdGy")
+
 
 CAMaps %>%
   filter(period == "current") %>%
@@ -192,20 +205,39 @@ write.csv("./data/spatial/CAmaps_future.csv", row.names = F)
 
 
 
+matrix <- bind_rows(SanDiegoMaps, CAMaps)
+
+matrix %>%
+  ggplot(aes(x=lon, y=lat, color=probability)) + geom_point(size=1, shape=15) + facet_grid(geography~ period) + 
+  scale_color_distiller(palette = "Spectral")
+
+matrix %>%
+  ggplot(aes(x=lon, y=lat, color=mean_hectares)) + geom_point(size=1, shape=15) + facet_grid(geography~ period) + 
+  scale_color_distiller(palette = "RdGy")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+POP2000 <- as.data.table(read.csv("./data/Intercensal_2000-2010_DBInput_csv.txt", header=T, stringsAsFactors = F)) %>%
+  mutate(ageCat = ifelse(Age <=5, "under5",ifelse(Age >=65,"over65","other"))) %>%
+  filter(ageCat != "other" & Year != "4/1/2000 0:00:00" & Year != "4/1/2010 0:00:00" & CountyName != "California") %>% 
+  mutate(year = as.numeric(substring(sapply(strsplit(as.character(Year), "/"), "[[", 3),1,4))) %>%
+  mutate(county_name = ifelse(CountyName =="ContraCosta", "Contra Costa",
+                              ifelse(CountyName =="DelNorte", "Del Norte",
+                                     ifelse(CountyName =="ElDorado", "El Dorado",
+                                            ifelse(CountyName =="LosAngeles", "Los Angeles",
+                                                   ifelse(CountyName =="SanBenito", "San Benito",
+                                                          ifelse(CountyName =="SanBernardino", "San Bernardino",
+                                                                 ifelse(CountyName =="SanDiego", "San Diego",
+                                                                        ifelse(CountyName =="SanFrancisco", "San Francisco",
+                                                                               ifelse(CountyName =="SanJoaquin", "San Joaquin",
+                                                                                      ifelse(CountyName =="SanLuisObispo", "San Luis Obispo",
+                                                                                             ifelse(CountyName =="SanMateo", "San Mateo",
+                                                                                                    ifelse(CountyName =="SantaBarbara", "Santa Barbara",
+                                                                                                           ifelse(CountyName =="SantaClara", "Santa Clara",
+                                                                                                                  ifelse(CountyName =="SantaCruz", "Santa Cruz",CountyName))))))))))))))) %>%
+  group_by(ageCat, year, county_name) %>%
+  summarise(people = sum(Population, na.rm=T)) %>% 
+  left_join(read.csv("~/CA_stcoFIPS_key.csv", header=T, stringsAsFactors = FALSE)) %>%
+  select(ageCat, year, stcoFIPS, county_name, people)
 
 
 
@@ -213,31 +245,18 @@ write.csv("./data/spatial/CAmaps_future.csv", row.names = F)
 POPproj <- as.data.table(read.csv("./data/P3_Complete.csv", header=T)) %>%
   mutate(ageCat = ifelse(agerc <=5, "under5",ifelse(agerc >=65,"over65","other"))) %>%
   filter(ageCat != "other") %>%
-    mutate(gender = ifelse(sex == 1,"Female","Male"),
-           race = factor(ifelse(race7 == 1, "White, Non-Hispanic", 
-                         ifelse(race7 == 2, "Black, Non-Hispanic",
-                                ifelse(race7 == 3, "American Indian or Alaska Native, Non-Hispanic",
-                                       ifelse(race7 == 4,"Asian, Non-Hispanic", 
-                                              ifelse(race7 == 5, "Native Hawaiian or Pacific Islander, Non-Hispanic",
-                                                     ifelse(race7 == 6,"Multiracial (two or more of above races), Non-Hispanic","Hispanic (any race)")))))), 
-           levels = c("White, Non-Hispanic", 
-                      "Black, Non-Hispanic", 
-                      "American Indian or Alaska Native, Non-Hispanic", 
-                      "Asian, Non-Hispanic", 
-                      "Native Hawaiian or Pacific Islander, Non-Hispanic",
-                      "Multiracial (two or more of above races), Non-Hispanic",
-                      "Hispanic (any race)")), 
-           stcoFIPS = as.numeric(as.character(fips)),
-           decade = factor(ifelse(year %in% c(2010:2019),"2010s",
-                                  ifelse(year %in% c(2020:2029), "2020s",
-                                         ifelse(year %in% c(2030:2039),"2030s",
-                                                ifelse(year %in% c(2040:2049), "2040s","2050s")))),
-                           levels = c("2010s","2020s","2030s","2040s","2050s"))) %>%
-  group_by(ageCat, year, stcoFIPS, decade) %>%
-    summarise(people = sum(perwt, na.rm=T)) %>%
-  group_by(ageCat, stcoFIPS, decade) %>%
+  mutate(stcoFIPS = as.numeric(as.character(fips))) %>%
+  full_join(read.csv("~/CA_stcoFIPS_key.csv", header=T)) %>%
+  group_by(ageCat, year, stcoFIPS, county_name) %>%
+  summarise(people = sum(perwt, na.rm=T)) %>%
+  bind_rows(POP2000) %>% 
+  mutate(period = factor(ifelse(year %in% c(2000:2019),"current",
+                                ifelse(year %in% c(2040:2059),"future", "other")),
+                         levels = c("current","future","other"))) %>%
+  filter(period != "other") %>%
+  group_by(ageCat, stcoFIPS, county_name, period) %>%
   summarise(people = mean(people, na.rm=T)) %>%
-  as.data.table() %>% setkeyv("stcoFIPS")
+  as.data.table() %>% setkeyv("county_name")
 
 
 
@@ -245,5 +264,11 @@ write.csv(POPproj, "./data/StatePOPprojections.csv", row.names = F)
 
 
 POPproj %>%
-  ggplot(aes(x=stcoFIPS, y=people, fill=decade)) + geom_bar(stat="identity",position="dodge") + facet_grid(.~ ageCat)+ coord_flip()
+  ggplot(aes(x=factor(county_name), y=people, color=decade)) + geom_point() + facet_grid(.~ ageCat, scales = "free_x")+ coord_flip()
 
+POPproj %>%
+  filter(county_name =="San Diego")
+
+POPproj %>%
+  group_by(ageCat, decade) %>%
+  summarise(statePOP = sum(people))
