@@ -1,0 +1,406 @@
+age,visit,lag,Disease, RR , L95 , U95 
+all,ED,14-day,Total Encounters, 0.95 , 0.91 , 0.99 
+all,ED,14-day,Respiratory (all), 1.12 , 1.03 , 1.22 
+all,ED,14-day,Asthma, 1.43 , 1.17 , 1.75 
+all,ED,14-day,Acute Bronchitis, 1.06 , 0.75 , 1.51 
+all,ED,14-day,COPD, 0.99 , 0.70 , 1.40 
+all,ED,14-day,Pneumonia, 1.29 , 0.95 , 1.75 
+all,ED,14-day,Upper Respiratory Infection, 1.21 , 1.02 , 1.44 
+all,ED,14-day,Respiratory Symptoms, 1.13 , 1.02 , 1.25 
+all,ED,14-day,Bronchitis (not specified), 0.88 , 0.52 , 1.49 
+all,ED,14-day,Cardiovascular (all), 0.94 , 0.78 , 1.13 
+all,ED,14-day,Ischemic Heart Disease, 1.40 , 0.92 , 2.11 
+all,ED,14-day,Dysrythmia, 0.94 , 0.68 , 1.30 
+all,ED,14-day,Chronic Heart Failure, 0.64 , 0.38 , 1.08 
+all,ED,14-day,Stroke, 1.00 , 0.66 , 1.52 
+all,ED,14-day,Diseases of the Peripheral Circulation, 0.71 , 0.46 , 1.09 
+all,Inpatient Hospitalizations,14-day,Total Encounters, 0.95 , 0.90 , 0.99 
+all,Inpatient Hospitalizations,14-day,Respiratory (all), 1.01 , 0.91 , 1.12 
+all,Inpatient Hospitalizations,14-day,Asthma, 0.92 , 0.67 , 1.28 
+all,Inpatient Hospitalizations,14-day,Acute Bronchitis, 1.12 , 0.62 , 2.03 
+all,Inpatient Hospitalizations,14-day,COPD, 0.88 , 0.69 , 1.12 
+all,Inpatient Hospitalizations,14-day,Pneumonia, 1.14 , 0.93 , 1.39 
+all,Inpatient Hospitalizations,14-day,Upper Respiratory Infection, 1.41 , 0.83 , 2.37 
+all,Inpatient Hospitalizations,14-day,Respiratory Symptoms, 0.99 , 0.86 , 1.13 
+all,Inpatient Hospitalizations,14-day,Bronchitis (not specified),,,
+all,Inpatient Hospitalizations,14-day,Cardiovascular (all), 0.93 , 0.82 , 1.04 
+all,Inpatient Hospitalizations,14-day,Ischemic Heart Disease, 0.91 , 0.73 , 1.13 
+all,Inpatient Hospitalizations,14-day,Dysrythmia, 0.74 , 0.57 , 0.98 
+all,Inpatient Hospitalizations,14-day,Chronic Heart Failure, 0.81 , 0.64 , 1.03 
+all,Inpatient Hospitalizations,14-day,Stroke, 1.02 , 0.80 , 1.30 
+all,Inpatient Hospitalizations,14-day,Diseases of the Peripheral Circulation, 0.94 , 0.73 , 1.21 
+all,Doctor's Office and Clinic Visits,14-day,Total Encounters, 0.85 , 0.84 , 0.86 
+all,Doctor's Office and Clinic Visits,14-day,Respiratory (all), 1.08 , 1.04 , 1.12 
+all,Doctor's Office and Clinic Visits,14-day,Asthma, 1.26 , 1.17 , 1.36 
+all,Doctor's Office and Clinic Visits,14-day,Acute Bronchitis, 1.34 , 1.17 , 1.54 
+all,Doctor's Office and Clinic Visits,14-day,COPD, 1.11 , 0.98 , 1.27 
+all,Doctor's Office and Clinic Visits,14-day,Pneumonia, 1.29 , 1.06 , 1.57 
+all,Doctor's Office and Clinic Visits,14-day,Upper Respiratory Infection, 0.98 , 0.93 , 1.03 
+all,Doctor's Office and Clinic Visits,14-day,Respiratory Symptoms, 1.06 , 0.97 , 1.15 
+all,Doctor's Office and Clinic Visits,14-day,Bronchitis (not specified), 1.33 , 1.06 , 1.68 
+all,Doctor's Office and Clinic Visits,14-day,Cardiovascular (all), 0.89 , 0.82 , 0.97 
+all,Doctor's Office and Clinic Visits,14-day,Ischemic Heart Disease, 0.89 , 0.76 , 1.03 
+all,Doctor's Office and Clinic Visits,14-day,Dysrythmia, 1.05 , 0.88 , 1.26 
+all,Doctor's Office and Clinic Visits,14-day,Chronic Heart Failure, 0.85 , 0.71 , 1.02 
+all,Doctor's Office and Clinic Visits,14-day,Stroke, 0.90 , 0.72 , 1.14 
+all,Doctor's Office and Clinic Visits,14-day,Diseases of the Peripheral Circulation, 0.83 , 0.69 , 1.00 
+all,ED,5-day,Total Encounters, 1.00 , 0.94 , 1.07 
+all,ED,5-day,Respiratory (all), 1.28 , 1.13 , 1.44 
+all,ED,5-day,Asthma, 1.95 , 1.46 , 2.60 
+all,ED,5-day,Acute Bronchitis, 1.36 , 0.82 , 2.24 
+all,ED,5-day,COPD, 0.97 , 0.55 , 1.68 
+all,ED,5-day,Pneumonia, 1.09 , 0.66 , 1.81 
+all,ED,5-day,Upper Respiratory Infection, 1.45 , 1.12 , 1.87 
+all,ED,5-day,Respiratory Symptoms, 1.27 , 1.10 , 1.48 
+all,ED,5-day,Bronchitis (not specified), 1.00 , 0.46 , 2.19 
+all,ED,5-day,Cardiovascular (all), 0.91 , 0.68 , 1.22 
+all,ED,5-day,Ischemic Heart Disease, 1.09 , 0.54 , 2.19 
+all,ED,5-day,Dysrythmia, 0.99 , 0.61 , 1.62 
+all,ED,5-day,Chronic Heart Failure, 0.60 , 0.26 , 1.38 
+all,ED,5-day,Stroke, 1.07 , 0.55 , 2.06 
+all,ED,5-day,Diseases of the Peripheral Circulation, 0.70 , 0.37 , 1.34 
+all,Inpatient Hospitalizations,5-day,Total Encounters, 0.90 , 0.84 , 0.97 
+all,Inpatient Hospitalizations,5-day,Respiratory (all), 1.08 , 0.92 , 1.26 
+all,Inpatient Hospitalizations,5-day,Asthma, 1.35 , 0.90 , 2.03 
+all,Inpatient Hospitalizations,5-day,Acute Bronchitis,,,
+all,Inpatient Hospitalizations,5-day,COPD, 0.94 , 0.65 , 1.34 
+all,Inpatient Hospitalizations,5-day,Pneumonia, 1.13 , 0.83 , 1.54 
+all,Inpatient Hospitalizations,5-day,Upper Respiratory Infection,,,
+all,Inpatient Hospitalizations,5-day,Respiratory Symptoms, 1.04 , 0.85 , 1.27 
+all,Inpatient Hospitalizations,5-day,Bronchitis (not specified),,,
+all,Inpatient Hospitalizations,5-day,Cardiovascular (all), 0.94 , 0.78 , 1.12 
+all,Inpatient Hospitalizations,5-day,Ischemic Heart Disease, 0.97 , 0.70 , 1.33 
+all,Inpatient Hospitalizations,5-day,Dysrythmia, 0.78 , 0.52 , 1.16 
+all,Inpatient Hospitalizations,5-day,Chronic Heart Failure, 0.77 , 0.53 , 1.11 
+all,Inpatient Hospitalizations,5-day,Stroke, 1.20 , 0.86 , 1.68 
+all,Inpatient Hospitalizations,5-day,Diseases of the Peripheral Circulation, 0.90 , 0.61 , 1.32 
+all,Doctor's Office and Clinic Visits,5-day,Total Encounters, 0.69 , 0.67 , 0.70 
+all,Doctor's Office and Clinic Visits,5-day,Respiratory (all), 0.99 , 0.94 , 1.04 
+all,Doctor's Office and Clinic Visits,5-day,Asthma, 1.21 , 1.08 , 1.34 
+all,Doctor's Office and Clinic Visits,5-day,Acute Bronchitis, 1.28 , 1.06 , 1.54 
+all,Doctor's Office and Clinic Visits,5-day,COPD, 0.92 , 0.76 , 1.11 
+all,Doctor's Office and Clinic Visits,5-day,Pneumonia, 1.24 , 0.94 , 1.63 
+all,Doctor's Office and Clinic Visits,5-day,Upper Respiratory Infection, 0.90 , 0.83 , 0.97 
+all,Doctor's Office and Clinic Visits,5-day,Respiratory Symptoms, 0.97 , 0.85 , 1.10 
+all,Doctor's Office and Clinic Visits,5-day,Bronchitis (not specified), 1.19 , 0.85 , 1.66 
+all,Doctor's Office and Clinic Visits,5-day,Cardiovascular (all), 0.69 , 0.61 , 0.79 
+all,Doctor's Office and Clinic Visits,5-day,Ischemic Heart Disease, 0.63 , 0.49 , 0.80 
+all,Doctor's Office and Clinic Visits,5-day,Dysrythmia, 0.82 , 0.63 , 1.08 
+all,Doctor's Office and Clinic Visits,5-day,Chronic Heart Failure, 0.66 , 0.50 , 0.87 
+all,Doctor's Office and Clinic Visits,5-day,Stroke, 0.70 , 0.49 , 1.00 
+all,Doctor's Office and Clinic Visits,5-day,Diseases of the Peripheral Circulation, 0.66 , 0.50 , 0.87 
+all,ED,8-day,Total Encounters, 0.99 , 0.94 , 1.04 
+all,ED,8-day,Respiratory (all), 1.25 , 1.13 , 1.39 
+all,ED,8-day,Asthma, 1.72 , 1.34 , 2.22 
+all,ED,8-day,Acute Bronchitis, 1.40 , 0.92 , 2.13 
+all,ED,8-day,COPD, 1.10 , 0.71 , 1.71 
+all,ED,8-day,Pneumonia, 1.17 , 0.77 , 1.77 
+all,ED,8-day,Upper Respiratory Infection, 1.48 , 1.19 , 1.83 
+all,ED,8-day,Respiratory Symptoms, 1.25 , 1.10 , 1.42 
+all,ED,8-day,Bronchitis (not specified),,,
+all,ED,8-day,Cardiovascular (all), 0.91 , 0.72 , 1.16 
+all,ED,8-day,Ischemic Heart Disease, 0.95 , 0.54 , 1.67 
+all,ED,8-day,Dysrythmia, 0.96 , 0.63 , 1.45 
+all,ED,8-day,Chronic Heart Failure, 0.62 , 0.31 , 1.25 
+all,ED,8-day,Stroke, 1.03 , 0.60 , 1.76 
+all,ED,8-day,Diseases of the Peripheral Circulation, 0.77 , 0.44 , 1.34 
+all,Inpatient Hospitalizations,8-day,Total Encounters, 0.91 , 0.86 , 0.97 
+all,Inpatient Hospitalizations,8-day,Respiratory (all), 1.03 , 0.90 , 1.18 
+all,Inpatient Hospitalizations,8-day,Asthma, 1.07 , 0.72 , 1.58 
+all,Inpatient Hospitalizations,8-day,Acute Bronchitis,,,
+all,Inpatient Hospitalizations,8-day,COPD, 0.82 , 0.59 , 1.14 
+all,Inpatient Hospitalizations,8-day,Pneumonia, 1.11 , 0.85 , 1.45 
+all,Inpatient Hospitalizations,8-day,Upper Respiratory Infection,,,
+all,Inpatient Hospitalizations,8-day,Respiratory Symptoms, 1.01 , 0.84 , 1.20 
+all,Inpatient Hospitalizations,8-day,Bronchitis (not specified),,,
+all,Inpatient Hospitalizations,8-day,Cardiovascular (all), 0.92 , 0.79 , 1.07 
+all,Inpatient Hospitalizations,8-day,Ischemic Heart Disease, 0.95 , 0.71 , 1.26 
+all,Inpatient Hospitalizations,8-day,Dysrythmia, 0.71 , 0.49 , 1.03 
+all,Inpatient Hospitalizations,8-day,Chronic Heart Failure, 0.69 , 0.50 , 0.95 
+all,Inpatient Hospitalizations,8-day,Stroke, 1.15 , 0.85 , 1.55 
+all,Inpatient Hospitalizations,8-day,Diseases of the Peripheral Circulation, 0.94 , 0.68 , 1.31 
+all,Doctor's Office and Clinic Visits,8-day,Total Encounters, 0.76 , 0.75 , 0.77 
+all,Doctor's Office and Clinic Visits,8-day,Respiratory (all), 1.08 , 1.03 , 1.13 
+all,Doctor's Office and Clinic Visits,8-day,Asthma, 1.26 , 1.14 , 1.40 
+all,Doctor's Office and Clinic Visits,8-day,Acute Bronchitis, 1.48 , 1.24 , 1.76 
+all,Doctor's Office and Clinic Visits,8-day,COPD, 0.98 , 0.82 , 1.16 
+all,Doctor's Office and Clinic Visits,8-day,Pneumonia, 1.31 , 1.02 , 1.68 
+all,Doctor's Office and Clinic Visits,8-day,Upper Respiratory Infection, 0.99 , 0.93 , 1.07 
+all,Doctor's Office and Clinic Visits,8-day,Respiratory Symptoms, 1.05 , 0.94 , 1.18 
+all,Doctor's Office and Clinic Visits,8-day,Bronchitis (not specified), 1.27 , 0.94 , 1.72 
+all,Doctor's Office and Clinic Visits,8-day,Cardiovascular (all), 0.75 , 0.66 , 0.84 
+all,Doctor's Office and Clinic Visits,8-day,Ischemic Heart Disease, 0.64 , 0.51 , 0.81 
+all,Doctor's Office and Clinic Visits,8-day,Dysrythmia, 0.92 , 0.72 , 1.17 
+all,Doctor's Office and Clinic Visits,8-day,Chronic Heart Failure, 0.65 , 0.50 , 0.84 
+all,Doctor's Office and Clinic Visits,8-day,Stroke, 0.89 , 0.66 , 1.21 
+all,Doctor's Office and Clinic Visits,8-day,Diseases of the Peripheral Circulation, 0.74 , 0.57 , 0.95 
+Age 0-4,ED,5-day,Acute Bronchitis, 2.56 , 1.15 , 5.68 
+Age 5-17,ED,5-day,Acute Bronchitis, 1.78 , 0.38 , 8.23 
+Age 18+,ED,5-day,Acute Bronchitis, 0.94 , 0.45 , 1.96 
+Age 0-4,Inpatient Hospitalizations,5-day,Acute Bronchitis, 1.33 , 0.30 , 5.96 
+Age 5-17,Inpatient Hospitalizations,5-day,Acute Bronchitis,,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,Acute Bronchitis, 1.20 , 0.36 , 4.04 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Acute Bronchitis, 1.52 , 1.15 , 2.00 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Acute Bronchitis, 1.25 , 0.64 , 2.43 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Acute Bronchitis, 1.04 , 0.75 , 1.45 
+Age 0-4,ED,8-day,Acute Bronchitis, 2.00 , 0.97 , 4.12 
+Age 5-17,ED,8-day,Acute Bronchitis, 2.29 , 0.67 , 7.81 
+Age 18+,ED,8-day,Acute Bronchitis, 1.10 , 0.61 , 1.98 
+Age 0-4,Inpatient Hospitalizations,8-day,Acute Bronchitis, 2.22 , 0.74 , 6.63 
+Age 5-17,Inpatient Hospitalizations,8-day,Acute Bronchitis,,  ,  
+Age 18+,Inpatient Hospitalizations,8-day,Acute Bronchitis, 1.23 , 0.40 , 3.77 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Acute Bronchitis, 1.67 , 1.28 , 2.16 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Acute Bronchitis, 2.38 , 1.35 , 4.19 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Acute Bronchitis, 1.21 , 0.90 , 1.63 
+Age 0-4,ED,5-day,Asthma, 2.36 , 1.27 , 4.39 
+Age 5-17,ED,5-day,Asthma, 2.00 , 1.09 , 3.67 
+Age 18+,ED,5-day,Asthma, 1.82 , 1.24 , 2.67 
+Age 0-4,Inpatient Hospitalizations,5-day,Asthma, 2.67 , 1.06 , 6.72 
+Age 5-17,Inpatient Hospitalizations,5-day,Asthma, 0.76 , 0.18 , 3.25 
+Age 18+,Inpatient Hospitalizations,5-day,Asthma, 1.44 , 0.87 , 2.38 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Asthma, 1.31 , 1.07 , 1.61 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Asthma, 1.25 , 1.05 , 1.48 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Asthma, 1.07 , 0.88 , 1.31 
+Age 0-4,ED,8-day,Asthma, 2.10 , 1.25 , 3.51 
+Age 5-17,ED,8-day,Asthma, 1.65 , 0.97 , 2.82 
+Age 18+,ED,8-day,Asthma, 1.62 , 1.15 , 2.29 
+Age 0-4,Inpatient Hospitalizations,8-day,Asthma, 2.00 , 0.75 , 5.33 
+Age 5-17,Inpatient Hospitalizations,8-day,Asthma, 0.57 , 0.13 , 2.51 
+Age 18+,Inpatient Hospitalizations,8-day,Asthma, 1.21 , 0.76 , 1.93 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Asthma, 1.37 , 1.13 , 1.66 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Asthma, 1.20 , 1.02 , 1.41 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Asthma, 1.25 , 1.04 , 1.49 
+Age 0-4,ED,5-day,Bronchitis (not specified), 0.89 , 0.11 , 7.02 
+Age 5-17,ED,5-day,Bronchitis (not specified),,  ,  
+Age 18+,ED,5-day,Bronchitis (not specified), 1.17 , 0.50 , 2.76 
+Age 0-4,Inpatient Hospitalizations,5-day,Bronchitis (not specified),  ,  ,  
+Age 5-17,Inpatient Hospitalizations,5-day,Bronchitis (not specified),  ,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,Bronchitis (not specified), 2.29 , 0.47 , 11.00 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Bronchitis (not specified), 0.93 , 0.45 , 1.93 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Bronchitis (not specified), 1.64 , 0.77 , 3.51 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Bronchitis (not specified), 1.20 , 0.76 , 1.87 
+Age 0-4,ED,8-day,Bronchitis (not specified), 0.67 , 0.08 , 5.54 
+Age 5-17,ED,8-day,Bronchitis (not specified), -   ,  ,  
+Age 18+,ED,8-day,Bronchitis (not specified), 1.07 , 0.49 , 2.33 
+Age 0-4,Inpatient Hospitalizations,8-day,Bronchitis (not specified),  ,  ,  
+Age 5-17,Inpatient Hospitalizations,8-day,Bronchitis (not specified),  ,  ,  
+Age 18+,Inpatient Hospitalizations,8-day,Bronchitis (not specified), 1.60 , 0.31 , 8.25 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Bronchitis (not specified), 1.06 , 0.58 , 1.96 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Bronchitis (not specified), 1.29 , 0.61 , 2.72 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Bronchitis (not specified), 1.44 , 0.96 , 2.17 
+Age 0-4,ED,5-day,Cardiovascular (all),,  ,  
+Age 5-17,ED,5-day,Cardiovascular (all), 0.94 , 0.22 , 4.07 
+Age 18+,ED,5-day,Cardiovascular (all), 0.97 , 0.71 , 1.33 
+Age 0-4,Inpatient Hospitalizations,5-day,Cardiovascular (all), 1.90 , 0.72 , 5.05 
+Age 5-17,Inpatient Hospitalizations,5-day,Cardiovascular (all), 0.73 , 0.17 , 3.09 
+Age 18+,Inpatient Hospitalizations,5-day,Cardiovascular (all), 0.97 , 0.77 , 1.23 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Cardiovascular (all), 0.89 , 0.27 , 2.93 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Cardiovascular (all), 0.89 , 0.32 , 2.50 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Cardiovascular (all), 0.64 , 0.55 , 0.76 
+Age 0-4,ED,8-day,Cardiovascular (all), 1.33 , 0.14 , 12.82 
+Age 5-17,ED,8-day,Cardiovascular (all), 0.92 , 0.26 , 3.24 
+Age 18+,ED,8-day,Cardiovascular (all), 0.96 , 0.74 , 1.25 
+Age 0-4,Inpatient Hospitalizations,8-day,Cardiovascular (all), 1.50 , 0.59 , 3.83 
+Age 5-17,Inpatient Hospitalizations,8-day,Cardiovascular (all), 1.00 , 0.38 , 2.66 
+Age 18+,Inpatient Hospitalizations,8-day,Cardiovascular (all), 0.94 , 0.76 , 1.15 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Cardiovascular (all), 0.76 , 0.26 , 2.22 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Cardiovascular (all), 1.14 , 0.46 , 2.83 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Cardiovascular (all), 0.72 , 0.62 , 0.83 
+Age 0-4,ED,5-day,Chronic Heart Failure,  ,  ,  
+Age 5-17,ED,5-day,Chronic Heart Failure,,  ,  
+Age 18+,ED,5-day,Chronic Heart Failure, 0.76 , 0.33 , 1.76 
+Age 0-4,Inpatient Hospitalizations,5-day,Chronic Heart Failure,  ,  ,  
+Age 5-17,Inpatient Hospitalizations,5-day,Chronic Heart Failure,,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,Chronic Heart Failure, 0.82 , 0.51 , 1.32 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Chronic Heart Failure, 8.00 , 0.50 , 127.91 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Chronic Heart Failure,,  ,  
+Age 18+,Doctor's Office and Clinic Visits,5-day,Chronic Heart Failure, 0.65 , 0.47 , 0.91 
+Age 0-4,ED,8-day,Chronic Heart Failure,  ,  ,  
+Age 5-17,ED,8-day,Chronic Heart Failure,,  ,  
+Age 18+,ED,8-day,Chronic Heart Failure, 0.68 , 0.32 , 1.44 
+Age 0-4,Inpatient Hospitalizations,8-day,Chronic Heart Failure,  ,  ,  
+Age 5-17,Inpatient Hospitalizations,8-day,Chronic Heart Failure, 4.00 , 0.25 , 63.95 
+Age 18+,Inpatient Hospitalizations,8-day,Chronic Heart Failure, 0.79 , 0.53 , 1.19 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Chronic Heart Failure, 4.00 , 0.25 , 63.95 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Chronic Heart Failure, -   ,  ,  
+Age 18+,Doctor's Office and Clinic Visits,8-day,Chronic Heart Failure, 0.66 , 0.48 , 0.89 
+Age 0-4,ED,5-day,COPD,  ,  ,  
+Age 5-17,ED,5-day,COPD,  ,  ,  
+Age 18+,ED,5-day,COPD, 1.10 , 0.63 , 1.92 
+Age 0-4,Inpatient Hospitalizations,5-day,COPD,,  ,  
+Age 5-17,Inpatient Hospitalizations,5-day,COPD,  ,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,COPD, 1.10 , 0.74 , 1.63 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,COPD,,  ,  
+Age 5-17,Doctor's Office and Clinic Visits,5-day,COPD,,  ,  
+Age 18+,Doctor's Office and Clinic Visits,5-day,COPD, 0.92 , 0.74 , 1.15 
+Age 0-4,ED,8-day,COPD,  ,  ,  
+Age 5-17,ED,8-day,COPD,  ,  ,  
+Age 18+,ED,8-day,COPD, 1.22 , 0.78 , 1.91 
+Age 0-4,Inpatient Hospitalizations,8-day,COPD,  ,  ,  
+Age 5-17,Inpatient Hospitalizations,8-day,COPD,  ,  ,  
+Age 18+,Inpatient Hospitalizations,8-day,COPD, 0.95 , 0.67 , 1.34 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,COPD, 2.00 , 0.18 , 22.06 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,COPD,,  ,  
+Age 18+,Doctor's Office and Clinic Visits,8-day,COPD, 1.01 , 0.82 , 1.23 
+Age 0-4,ED,5-day,Diseases of the Peripheral Circulation, -   ,  ,  
+Age 5-17,ED,5-day,Diseases of the Peripheral Circulation, -   ,  ,  
+Age 18+,ED,5-day,Diseases of the Peripheral Circulation, 0.91 , 0.47 , 1.75 
+Age 0-4,Inpatient Hospitalizations,5-day,Diseases of the Peripheral Circulation, 2.67 , 0.72 , 9.85 
+Age 5-17,Inpatient Hospitalizations,5-day,Diseases of the Peripheral Circulation, -   ,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,Diseases of the Peripheral Circulation, 0.94 , 0.59 , 1.50 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Diseases of the Peripheral Circulation, 0.67 , 0.09 , 5.13 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Diseases of the Peripheral Circulation, 1.85 , 0.53 , 6.48 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Diseases of the Peripheral Circulation, 0.59 , 0.42 , 0.83 
+Age 0-4,ED,8-day,Diseases of the Peripheral Circulation,,  ,  
+Age 5-17,ED,8-day,Diseases of the Peripheral Circulation,,  ,  
+Age 18+,ED,8-day,Diseases of the Peripheral Circulation, 0.97 , 0.55 , 1.70 
+Age 0-4,Inpatient Hospitalizations,8-day,Diseases of the Peripheral Circulation, 2.00 , 0.60 , 6.64 
+Age 5-17,Inpatient Hospitalizations,8-day,Diseases of the Peripheral Circulation, 0.40 , 0.05 , 3.12 
+Age 18+,Inpatient Hospitalizations,8-day,Diseases of the Peripheral Circulation, 1.00 , 0.67 , 1.49 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Diseases of the Peripheral Circulation, 1.00 , 0.21 , 4.71 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Diseases of the Peripheral Circulation, 2.50 , 0.82 , 7.64 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Diseases of the Peripheral Circulation, 0.68 , 0.50 , 0.92 
+Age 0-4,ED,5-day,Dysrythmia,,  ,  
+Age 5-17,ED,5-day,Dysrythmia, 1.33 , 0.16 , 11.08 
+Age 18+,ED,5-day,Dysrythmia, 1.06 , 0.63 , 1.78 
+Age 0-4,Inpatient Hospitalizations,5-day,Dysrythmia, 1.00 , 0.13 , 8.00 
+Age 5-17,Inpatient Hospitalizations,5-day,Dysrythmia,,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,Dysrythmia, 1.24 , 0.81 , 1.90 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Dysrythmia,,  ,  
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Dysrythmia, 0.67 , 0.09 , 5.13 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Dysrythmia, 0.83 , 0.59 , 1.17 
+Age 0-4,ED,8-day,Dysrythmia,,  ,  
+Age 5-17,ED,8-day,Dysrythmia, 1.60 , 0.31 , 8.25 
+Age 18+,ED,8-day,Dysrythmia, 1.01 , 0.65 , 1.58 
+Age 0-4,Inpatient Hospitalizations,8-day,Dysrythmia, 0.67 , 0.08 , 5.54 
+Age 5-17,Inpatient Hospitalizations,8-day,Dysrythmia,,  ,  
+Age 18+,Inpatient Hospitalizations,8-day,Dysrythmia, 1.12 , 0.74 , 1.68 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Dysrythmia,,  ,  
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Dysrythmia, 0.57 , 0.07 , 4.64 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Dysrythmia, 0.97 , 0.72 , 1.32 
+Age 0-4,ED,5-day,Ischemic Heart Disease,  ,  ,  
+Age 5-17,ED,5-day,Ischemic Heart Disease,  ,  ,  
+Age 18+,ED,5-day,Ischemic Heart Disease, 0.89 , 0.38 , 2.07 
+Age 0-4,Inpatient Hospitalizations,5-day,Ischemic Heart Disease,  ,  ,  
+Age 5-17,Inpatient Hospitalizations,5-day,Ischemic Heart Disease,,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,Ischemic Heart Disease, 0.90 , 0.59 , 1.39 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Ischemic Heart Disease,  ,  ,  
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Ischemic Heart Disease,,  ,  
+Age 18+,Doctor's Office and Clinic Visits,5-day,Ischemic Heart Disease, 0.58 , 0.42 , 0.80 
+Age 0-4,ED,8-day,Ischemic Heart Disease,  ,  ,  
+Age 5-17,ED,8-day,Ischemic Heart Disease,  ,  ,  
+Age 18+,ED,8-day,Ischemic Heart Disease, 0.86 , 0.45 , 1.66 
+Age 0-4,Inpatient Hospitalizations,8-day,Ischemic Heart Disease,  ,  ,  
+Age 5-17,Inpatient Hospitalizations,8-day,Ischemic Heart Disease,,  ,  
+Age 18+,Inpatient Hospitalizations,8-day,Ischemic Heart Disease, 0.85 , 0.57 , 1.26 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Ischemic Heart Disease,  ,  ,  
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Ischemic Heart Disease,,  ,  
+Age 18+,Doctor's Office and Clinic Visits,8-day,Ischemic Heart Disease, 0.60 , 0.45 , 0.80 
+Age 0-4,ED,5-day,Pneumonia, 0.92 , 0.28 , 3.05 
+Age 5-17,ED,5-day,Pneumonia, 1.45 , 0.32 , 6.56 
+Age 18+,ED,5-day,Pneumonia, 1.33 , 0.72 , 2.46 
+Age 0-4,Inpatient Hospitalizations,5-day,Pneumonia, 1.45 , 0.50 , 4.22 
+Age 5-17,Inpatient Hospitalizations,5-day,Pneumonia, 0.64 , 0.15 , 2.70 
+Age 18+,Inpatient Hospitalizations,5-day,Pneumonia, 1.30 , 0.87 , 1.94 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Pneumonia, 1.55 , 1.09 , 2.20 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Pneumonia, 0.75 , 0.34 , 1.62 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Pneumonia, 1.14 , 0.64 , 2.04 
+Age 0-4,ED,8-day,Pneumonia, 1.28 , 0.58 , 2.84 
+Age 5-17,ED,8-day,Pneumonia, 2.00 , 0.50 , 8.00 
+Age 18+,ED,8-day,Pneumonia, 1.19 , 0.69 , 2.05 
+Age 0-4,Inpatient Hospitalizations,8-day,Pneumonia, 1.33 , 0.48 , 3.67 
+Age 5-17,Inpatient Hospitalizations,8-day,Pneumonia, 0.40 , 0.09 , 1.71 
+Age 18+,Inpatient Hospitalizations,8-day,Pneumonia, 1.28 , 0.91 , 1.80 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Pneumonia, 1.56 , 1.13 , 2.17 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Pneumonia, 1.07 , 0.55 , 2.09 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Pneumonia, 1.10 , 0.64 , 1.88 
+Age 0-4,ED,5-day,Respiratory (all), 1.70 , 1.32 , 2.19 
+Age 5-17,ED,5-day,Respiratory (all), 1.19 , 0.80 , 1.79 
+Age 18+,ED,5-day,Respiratory (all), 1.21 , 1.03 , 1.41 
+Age 0-4,Inpatient Hospitalizations,5-day,Respiratory (all), 1.18 , 0.66 , 2.12 
+Age 5-17,Inpatient Hospitalizations,5-day,Respiratory (all), 1.13 , 0.56 , 2.26 
+Age 18+,Inpatient Hospitalizations,5-day,Respiratory (all), 1.11 , 0.92 , 1.34 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Respiratory (all), 1.11 , 1.03 , 1.19 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Respiratory (all), 0.93 , 0.83 , 1.05 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Respiratory (all), 0.89 , 0.81 , 0.98 
+Age 0-4,ED,8-day,Respiratory (all), 1.65 , 1.34 , 2.03 
+Age 5-17,ED,8-day,Respiratory (all), 1.24 , 0.88 , 1.74 
+Age 18+,ED,8-day,Respiratory (all), 1.16 , 1.02 , 1.33 
+Age 0-4,Inpatient Hospitalizations,8-day,Respiratory (all), 1.54 , 0.97 , 2.44 
+Age 5-17,Inpatient Hospitalizations,8-day,Respiratory (all), 1.00 , 0.52 , 1.94 
+Age 18+,Inpatient Hospitalizations,8-day,Respiratory (all), 1.00 , 0.85 , 1.19 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Respiratory (all), 1.21 , 1.13 , 1.30 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Respiratory (all), 0.98 , 0.88 , 1.09 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Respiratory (all), 1.01 , 0.92 , 1.10 
+Age 0-4,ED,5-day,Respiratory Symptoms, 1.91 , 1.29 , 2.82 
+Age 5-17,ED,5-day,Respiratory Symptoms, 1.14 , 0.62 , 2.09 
+Age 18+,ED,5-day,Respiratory Symptoms, 1.22 , 1.02 , 1.45 
+Age 0-4,Inpatient Hospitalizations,5-day,Respiratory Symptoms, 0.93 , 0.37 , 2.35 
+Age 5-17,Inpatient Hospitalizations,5-day,Respiratory Symptoms, 1.74 , 0.66 , 4.57 
+Age 18+,Inpatient Hospitalizations,5-day,Respiratory Symptoms, 1.02 , 0.81 , 1.29 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Respiratory Symptoms, 1.49 , 1.22 , 1.84 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Respiratory Symptoms, 0.93 , 0.64 , 1.36 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Respiratory Symptoms, 0.78 , 0.64 , 0.96 
+Age 0-4,ED,8-day,Respiratory Symptoms, 1.66 , 1.19 , 2.32 
+Age 5-17,ED,8-day,Respiratory Symptoms, 1.40 , 0.85 , 2.30 
+Age 18+,ED,8-day,Respiratory Symptoms, 1.20 , 1.04 , 1.40 
+Age 0-4,Inpatient Hospitalizations,8-day,Respiratory Symptoms, 1.20 , 0.57 , 2.53 
+Age 5-17,Inpatient Hospitalizations,8-day,Respiratory Symptoms, 1.60 , 0.62 , 4.12 
+Age 18+,Inpatient Hospitalizations,8-day,Respiratory Symptoms, 0.95 , 0.78 , 1.17 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Respiratory Symptoms, 1.52 , 1.26 , 1.84 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Respiratory Symptoms, 1.09 , 0.78 , 1.53 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Respiratory Symptoms, 0.88 , 0.74 , 1.05 
+Age 0-4,ED,5-day,Stroke,  ,  ,  
+Age 5-17,ED,5-day,Stroke, 4.00 , 0.36 , 44.11 
+Age 18+,ED,5-day,Stroke, 1.00 , 0.48 , 2.09 
+Age 0-4,Inpatient Hospitalizations,5-day,Stroke, 2.67 , 0.54 , 13.21 
+Age 5-17,Inpatient Hospitalizations,5-day,Stroke, 3.20 , 0.62 , 16.49 
+Age 18+,Inpatient Hospitalizations,5-day,Stroke, 0.88 , 0.54 , 1.46 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Stroke, 1.14 , 0.14 , 9.29 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Stroke, -   ,  ,  
+Age 18+,Doctor's Office and Clinic Visits,5-day,Stroke, 0.62 , 0.39 , 0.96 
+Age 0-4,ED,8-day,Stroke,  ,  ,  
+Age 5-17,ED,8-day,Stroke, 1.33 , 0.14 , 12.82 
+Age 18+,ED,8-day,Stroke, 1.04 , 0.58 , 1.87 
+Age 0-4,Inpatient Hospitalizations,8-day,Stroke, 2.00 , 0.37 , 10.92 
+Age 5-17,Inpatient Hospitalizations,8-day,Stroke, 3.00 , 0.67 , 13.40 
+Age 18+,Inpatient Hospitalizations,8-day,Stroke, 0.78 , 0.50 , 1.21 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Stroke, 0.67 , 0.08 , 5.54 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Stroke,,  ,  
+Age 18+,Doctor's Office and Clinic Visits,8-day,Stroke, 0.84 , 0.58 , 1.22 
+Age 0-4,ED,5-day,Total Encounters, 1.25 , 1.07 , 1.47 
+Age 5-17,ED,5-day,Total Encounters, 0.79 , 0.65 , 0.96 
+Age 18+,ED,5-day,Total Encounters, 1.00 , 0.93 , 1.08 
+Age 0-4,Inpatient Hospitalizations,5-day,Total Encounters, 0.87 , 0.70 , 1.07 
+Age 5-17,Inpatient Hospitalizations,5-day,Total Encounters, 0.64 , 0.46 , 0.89 
+Age 18+,Inpatient Hospitalizations,5-day,Total Encounters, 0.93 , 0.85 , 1.01 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Total Encounters, 0.68 , 0.65 , 0.71 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Total Encounters, 0.60 , 0.57 , 0.63 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Total Encounters, 0.71 , 0.69 , 0.73 
+Age 0-4,ED,8-day,Total Encounters, 1.23 , 1.08 , 1.40 
+Age 5-17,ED,8-day,Total Encounters, 0.83 , 0.71 , 0.97 
+Age 18+,ED,8-day,Total Encounters, 0.98 , 0.92 , 1.05 
+Age 0-4,Inpatient Hospitalizations,8-day,Total Encounters, 0.88 , 0.74 , 1.05 
+Age 5-17,Inpatient Hospitalizations,8-day,Total Encounters, 0.82 , 0.63 , 1.06 
+Age 18+,Inpatient Hospitalizations,8-day,Total Encounters, 0.92 , 0.86 , 0.99 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Total Encounters, 0.77 , 0.75 , 0.80 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Total Encounters, 0.67 , 0.65 , 0.70 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Total Encounters, 0.77 , 0.76 , 0.79 
+Age 0-4,ED,5-day,Upper Respiratory Infection, 1.77 , 1.28 , 2.45 
+Age 5-17,ED,5-day,Upper Respiratory Infection, 1.03 , 0.49 , 2.16 
+Age 18+,ED,5-day,Upper Respiratory Infection, 0.94 , 0.54 , 1.64 
+Age 0-4,Inpatient Hospitalizations,5-day,Upper Respiratory Infection, 1.14 , 0.34 , 3.83 
+Age 5-17,Inpatient Hospitalizations,5-day,Upper Respiratory Infection,,  ,  
+Age 18+,Inpatient Hospitalizations,5-day,Upper Respiratory Infection, 0.73 , 0.09 , 5.63 
+Age 0-4,Doctor's Office and Clinic Visits,5-day,Upper Respiratory Infection, 1.01 , 0.92 , 1.11 
+Age 5-17,Doctor's Office and Clinic Visits,5-day,Upper Respiratory Infection, 0.70 , 0.59 , 0.84 
+Age 18+,Doctor's Office and Clinic Visits,5-day,Upper Respiratory Infection, 0.75 , 0.60 , 0.93 
+Age 0-4,ED,8-day,Upper Respiratory Infection, 1.86 , 1.42 , 2.43 
+Age 5-17,ED,8-day,Upper Respiratory Infection, 1.15 , 0.65 , 2.05 
+Age 18+,ED,8-day,Upper Respiratory Infection, 0.80 , 0.48 , 1.35 
+Age 0-4,Inpatient Hospitalizations,8-day,Upper Respiratory Infection, 2.57 , 1.11 , 5.94 
+Age 5-17,Inpatient Hospitalizations,8-day,Upper Respiratory Infection, 1.00 , 0.11 , 8.95 
+Age 18+,Inpatient Hospitalizations,8-day,Upper Respiratory Infection, 0.36 , 0.05 , 2.82 
+Age 0-4,Doctor's Office and Clinic Visits,8-day,Upper Respiratory Infection, 1.11 , 1.02 , 1.21 
+Age 5-17,Doctor's Office and Clinic Visits,8-day,Upper Respiratory Infection, 0.76 , 0.65 , 0.89 
+Age 18+,Doctor's Office and Clinic Visits,8-day,Upper Respiratory Infection, 0.87 , 0.72 , 1.05 
