@@ -38,7 +38,7 @@ flist <- c(
 
 
 #####################################
-# Define our function
+# Define our function to process wildfire netcdf
 #####################################
 dname = "hectares"
 
@@ -120,6 +120,12 @@ all_fire_dt <- as.data.table(process_nc(flist)) %>% setkeyv(keycols)
 locationData <- as.data.table(read.csv("https://raw.githubusercontent.com/vargovargo/wildfires/master/LOCAcounties.csv", header=T)) %>% 
   select(lon, lat, County, ClimateRegion, stcoFIPS) %>% setkeyv(keycols) 
 
+
+
+
+#####################################
+######### wildfire maps and  tables
+#####################################
 
 threshold <- 40.4686 # 100 acres
 
@@ -216,6 +222,10 @@ matrix %>%
   scale_color_distiller(palette = "RdGy")
 
 
+#####################################
+######### population data
+#####################################
+
 POP2000 <- as.data.table(read.csv("./data/Intercensal_2000-2010_DBInput_csv.txt", header=T, stringsAsFactors = F)) %>%
   mutate(ageCat = ifelse(Age <=5, "under5",ifelse(Age >=65,"over65","other"))) %>%
   filter(ageCat != "other" & Year != "4/1/2000 0:00:00" & Year != "4/1/2010 0:00:00" & CountyName != "California") %>% 
@@ -272,3 +282,36 @@ POPproj %>%
 POPproj %>%
   group_by(ageCat, decade) %>%
   summarise(statePOP = sum(people))
+
+
+
+#####################################
+######### results tables
+#####################################
+
+resultsTables <- read.csv("https://raw.githubusercontent.com/vargovargo/wildfires/master/AgeSpecificResults.csv", header=T, stringsAsFactors = F )
+
+resultsTables %>% 
+  filter(lag != "14-day" & U95 < 10 & age !="all" &
+           Disease %in% c("Respiratory (all)", "Asthma", "Total Encounters", "Acute Bronchitis", "Pneumonia", "Upper Respiratory Infection", "Respiratory Symptoms")) %>%
+  mutate(RR = as.numeric(as.character(RR)), 
+         age = factor(age, levels= c("Age 0-4","Age 5-17","Age 18+")),
+         lag = factor(lag, levels= c("5-day","8-day","14-day")))%>%
+  ggplot() + 
+  geom_point(aes(x=visit, y=RR,  color=age), position = position_dodge(width = 0.7)) + 
+  geom_errorbar(aes(x=visit, ymax=as.numeric(U95), ymin=as.numeric(L95), color=age), position = position_dodge(width = 0.7)) + 
+  geom_hline(yintercept = 1, linetype="dashed") + facet_grid( Disease ~ lag) + coord_flip()
+
+resultsTables %>% 
+  filter(age =="all") %>%
+  mutate(RR = as.numeric(as.character(RR)), 
+         age = factor(age, levels= c("Age 0-4","Age 5-17","Age 18+")),
+         lag = factor(lag, levels= c("5-day","8-day","14-day")))%>%
+  ggplot() + 
+  geom_point(aes(x=lag, y=RR,  color=visit), position = position_dodge(width = 0.7)) + 
+  geom_errorbar(aes(x=lag, ymax=as.numeric(U95), ymin=as.numeric(L95), color=visit), position = position_dodge(width = 0.7)) + 
+  geom_hline(yintercept = 1, linetype="dashed") + facet_wrap(~ Disease) + coord_flip() 
+
+
+
+
